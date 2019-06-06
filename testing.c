@@ -95,7 +95,7 @@ int main() {
 	 
 	if (numLives == 0) 
 		{
-		printf("\nSorry you lose, the word was: %s\n",
+		printf("\nSorry you lose, the word was: %s\n";
 		guessWords[randomIndex]);	
 	} 
 	else  
