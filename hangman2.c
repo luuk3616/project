@@ -81,11 +81,8 @@ int main() {
 			{
 				letterGuessed[loopIndex] = 1;
 				numCorrect++;				
-			}		
-		
-		}	
-		
-		if( oldCorrect == numCorrect && reguessed == 0) 
+			}	
+			if( oldCorrect == numCorrect && reguessed == 0) 
 		{
 			numLives--;
 			printf("Sorry, wrong guess\n");
@@ -93,6 +90,10 @@ int main() {
 			{
 				;
 			}
+		
+		}	
+		
+		
 		 else 
 		 {
 			printf("Correct guess :)\n");
