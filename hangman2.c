@@ -1,7 +1,7 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
-#include "time.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
 int main() {
 
@@ -37,11 +37,15 @@ int main() {
  	
 	while ( numCorrect < lengthOfWord ) {
 	
-		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
+		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) 
+		{
 		
-			if(letterGuessed[loopIndex] == 1) {
+			if(letterGuessed[loopIndex] == 1) 
+			{
 				printf("%c",guessWords[randomIndex][loopIndex]);				
-			} else {
+			} 
+			else 
+			{
 				printf("*");
 			}
 		
@@ -60,39 +64,49 @@ int main() {
 		
 		oldCorrect = numCorrect;
 		
-		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
+		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) 
+		{
 		
-			if(letterGuessed[loopIndex] == 1) {
-				if(guessWords[randomIndex][loopIndex] == letterEntered) {
+			if(letterGuessed[loopIndex] == 1) 
+			{
+				if(guessWords[randomIndex][loopIndex] == letterEntered) 
+				{
 					reguessed = 1; 
 					break;
 				} 
 				continue;
 			}
 		
-			if( letterEntered == guessWords[randomIndex][loopIndex] ) {
+			if( letterEntered == guessWords[randomIndex][loopIndex] ) 
+			{
 				letterGuessed[loopIndex] = 1;
 				numCorrect++;				
 			}		
 		
 		}	
 		
-		if( oldCorrect == numCorrect && reguessed == 0) {
+		if( oldCorrect == numCorrect && reguessed == 0) 
+		{
 			numLives--;
 			printf("Sorry, wrong guess\n");
-			if (numLives == 0) {
+			if (numLives == 0) 
+			{
 				break;
 			}
-		} else {
+		 else 
+		 {
 			printf("Correct guess :)\n");
+		 }
+	
 		}
 	
-	}
-	
-	if (numLives == 0) {	
+	if (numLives == 0) 
+	{	
 		printf("\nSorry you lose, the word was: %s\n",
 		guessWords[randomIndex]);
-	} else  {
+	}
+	else  
+	{
 		printf("\nYou win!\n");
 	} 
 
