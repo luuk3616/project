@@ -75,15 +75,19 @@ int main() {
 		
 		}	
 		
-		if( oldCorrect == numCorrect && reguessed == 0) {
+		if( oldCorrect == numCorrect && reguessed == 0) 
+		{
 			numLives--;
 			printf("Sorry, wrong guess\n");
-			if (numLives == 0) {
-				break;
-			}
-		} else if( reguessed == 1) {
+			if (numLives == 0) 
+		{
+				;
+		}
+		 else if( reguessed == 1) 
+		{
 			printf("Already Guessed\n");
-		} else {
+		} else 
+		{
 			printf("Correct guess\n");
 		}
 	
