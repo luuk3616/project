@@ -93,7 +93,3 @@ int main() {
 		} else {
 			printf("Correct guess :)\n");
 		}
-	
-		
-	return 0;
-}
