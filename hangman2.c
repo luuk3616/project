@@ -8,12 +8,12 @@ int main() {
 	srand(time(NULL));
 	
 	char guessWords[][16] = {
-		“fruits”, 
-		“water”,
-		“bear”,
-		“summer”,
-		“raven”,
-		"apple"
+		"fruit", 
+		"bear",
+		"summer",
+		"raven",
+		"water",
+		"apple"	
 	};
 	
 	// index for random word
