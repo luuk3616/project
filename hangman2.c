@@ -91,7 +91,7 @@ int main() {
 			printf("Sorry, wrong guess\n");
 			if (numLives == 0) 
 			{
-				break;
+				;
 			}
 		 else 
 		 {
