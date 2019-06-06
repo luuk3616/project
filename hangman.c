@@ -12,7 +12,7 @@ int main()
     int win=0;			//wincounter keeps track of the number of correct guesses.
     int i;				//Another counter variable to be used in for loops.
 
-  char guessWords[][20] = {
+  char word[][20] = {
 		"pen", 
 		"fruit",
 		"summer",
