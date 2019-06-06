@@ -16,7 +16,6 @@ int main() {
 		"apple"	
 	};
 	
-	// index for random word
 	int randomIndex = rand() % 6;
 	
 	int numLives = 5;
@@ -35,7 +34,7 @@ int main() {
 	char guess[16];
 	char letterEntered;	
 	
-    // game loop	
+ 	
 	while ( numCorrect < lengthOfWord ) {
 	
 		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
@@ -50,18 +49,14 @@ int main() {
 		
 		printf("\n");
 	
-		printf("Enter a guess letter:");
+		printf("Enter a letter:");
 		fgets(guess, 16, stdin);
-		
-		if( strncmp(guess, "quit", 4) == 0) {
-			quit = 1;
-			break;
 		}
 		
 		letterEntered = guess[0];
 		reguessed = 0; 
 		
-		printf("letterEntered:%c\n",letterEntered);
+		printf("You entered:%c\n",letterEntered);
 		
 		oldCorrect = numCorrect;
 		
@@ -88,23 +83,18 @@ int main() {
 			if (numLives == 0) {
 				break;
 			}
-		} else if( reguessed == 1) {
-			printf("Already Guessed!!\n");
 		} else {
 			printf("Correct guess :)\n");
 		}
 	
-	} // while loop
+	}
 	
-	if( quit == 1 ) {	
-		printf("\nthe user quit early\n");
-	} else if (numLives == 0) {
+	if (numLives == 0) {	
 		printf("\nSorry you lose, the word was: %s\n",
-		guessWords[randomIndex]);	
-	} else  {	
+		guessWords[randomIndex]);
+	} else  {
 		printf("\nYOU WIN!!! :)\n");
 	} 
-	
-		
+
 	return 0;
 }
