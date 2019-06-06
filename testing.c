@@ -8,47 +8,51 @@ int main() {
 	srand(time(NULL));
 	
 	char guessWords[][20] = {
-		"orange", 
-		"fruit",
-		"puppy",
+		"bear", 
 		"summer",
+		"water",
 		"raven",
+		"fruit",
 		"apple"	
 	};
-
-	int randomIndex = rand() % 6;
-	int numLives = 10;
-	int numCorrect = 0;
-	int oldCorrect = 0;
-	int lengthOfWord = strlen(guessWords[randomIndex]);
-	int letterGuessed[8] = { 0,0,0,0,0,0,0,0 };	
-	int loopIndex = 0;
-	int reguessed = 0;
-	char guess[20];
-	char letterEntered;	
+	
+int randomIndex = rand() % 6;
+int numLives = 5;
+int numCorrect = 0;
+int oldCorrect = 0;
+int lengthOfWord = strlen(guessWords[randomIndex]);
+int letterGuessed[8] = { 0,0,0,0,0,0,0,0 };
+int quit = 0;	
+int loopIndex = 0;
+int reguessed = 0;
+char guess[20];
+char letterEntered;	
 	
     // game loop	
 	while ( numCorrect < lengthOfWord ) 
-	{
+		{
 	
 		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) 
 		{
 		
 			if(letterGuessed[loopIndex] == 1) 
-			{
+		{
 				printf("%c",guessWords[randomIndex][loopIndex]);				
-			} else 
-			{
+		} else 
+		{
 				printf("*");
-			}
+		}
 		
 		}	
 		
 		printf("\n");
 	
-		printf("Guess a letter:");
+		printf("Enter a guess letter:");
 		fgets(guess, 20, stdin);
-
+		
+		if( strncmp(guess, "quit", 4) == 0) {
+			quit = 1;
+			break;
 		}
 		
 		letterEntered = guess[0];
@@ -58,15 +62,18 @@ int main() {
 		
 		oldCorrect = numCorrect;
 		
-		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
+		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) 
+		{
 		
-			if(letterGuessed[loopIndex] == 1) {
-				if(guessWords[randomIndex][loopIndex] == letterEntered) {
+			if(letterGuessed[loopIndex] == 1) 
+		{
+				if(guessWords[randomIndex][loopIndex] == letterEntered) 
+		{
 					reguessed = 1; 
 					break;
-				} 
+		} 
 				continue;
-			}
+		}
 		
 			if( letterEntered == guessWords[randomIndex][loopIndex] ) {
 				letterGuessed[loopIndex] = 1;
@@ -75,32 +82,27 @@ int main() {
 		
 		}	
 		
-		if( oldCorrect == numCorrect && reguessed == 0) 
-		{
+		if( oldCorrect == numCorrect && reguessed == 0) {
 			numLives--;
 			printf("Sorry, wrong guess\n");
-			if (numLives == 0) 
-		{
-				;
-		}
-		 else if( reguessed == 1) 
-		{
-			printf("Already Guessed\n");
-		} else 
-		{
-			printf("Correct guess\n");
+			if (numLives == 0) {
+				break;
+			}
+		} else if( reguessed == 1) {
+			printf("Already Guessed!!\n");
+		} else {
+			printf("Correct guess :)\n");
 		}
 	
 	} // while loop
-	 
-	if (numLives == 0) 
-		{
+	
+	if( quit == 1 ) {	
+		printf("\nthe user quit early\n");
+	} else if (numLives == 0) {
 		printf("\nSorry you lose, the word was: %s\n",
 		guessWords[randomIndex]);	
-	} 
-	else  
-	{	
-		printf("YOU WIN!!! :)\n");
+	} else  {	
+		printf("\nYOU WIN!!! :)\n");
 	} 
 	
 		
