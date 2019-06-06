@@ -18,7 +18,7 @@ int main() {
 	
 	int randomIndex = rand() % 6;
 	
-	int numLives = 5;
+	int numLives = 10;
 	int numCorrect = 0;
 	int oldCorrect = 0;
 	
@@ -89,7 +89,7 @@ int main() {
 	
 	}
 	
-	if (numLives == 0) {	
+	(if (numLives == 0) {	
 		printf("\nSorry you lose, the word was: %s\n",
 		guessWords[randomIndex]);
 	} else  {
