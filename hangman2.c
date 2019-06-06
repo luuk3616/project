@@ -8,18 +8,18 @@ int main() {
 	srand(time(NULL));
 	
 	char guessWords[][16] = {
-		"fruits", 
-		"yellow",
-		"raven",
-		"apple",
-		"summer",
-		"spring"	
+		“fruits”, 
+		“water”,
+		“bear”,
+		“summer”,
+		“raven”,
+		"apple"
 	};
 	
-	
+	// index for random word
 	int randomIndex = rand() % 6;
 	
-	int numLives = 0-;
+	int numLives = 5;
 	int numCorrect = 0;
 	int oldCorrect = 0;
 	
@@ -30,14 +30,14 @@ int main() {
 	int quit = 0;	
 	
 	int loopIndex = 0;
-	int reguessed = 0; 
+	int reguessed = 0; // EDIT
 	
-	char guess[20];
+	char guess[16];
 	char letterEntered;	
 	
     // game loop	
 	while ( numCorrect < lengthOfWord ) {
-
+	
 		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
 		
 			if(letterGuessed[loopIndex] == 1) {
@@ -51,7 +51,7 @@ int main() {
 		printf("\n");
 	
 		printf("Enter a guess letter:");
-		fgets(guess, 20, stdin);
+		fgets(guess, 16, stdin);
 		
 		if( strncmp(guess, "quit", 4) == 0) {
 			quit = 1;
@@ -93,10 +93,6 @@ int main() {
 		} else {
 			printf("Correct guess :)\n");
 		}
-	
-	} // while loop
-		printf("\nGood job!!! :)\n");
-	} 
 	
 		
 	return 0;
