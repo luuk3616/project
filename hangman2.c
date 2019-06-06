@@ -93,3 +93,18 @@ int main() {
 		} else {
 			printf("Correct guess :)\n");
 		}
+	
+	} // while loop
+	
+	if( quit == 1 ) {	
+		printf("\nthe user quit early\n");
+	} else if (numLives == 0) {
+		printf("\nSorry you lose, the word was: %s\n",
+		guessWords[randomIndex]);	
+	} else  {	
+		printf("\nYOU WIN!!! :)\n");
+	} 
+	
+		
+	return 0;
+}
