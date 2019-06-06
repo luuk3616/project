@@ -1,63 +1,93 @@
-
-#include <stdio.h>
-#include <string.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+#include "time.h"
 
 int main() {
-  // Get word to guess
-  char answer[128];
-  printf("Enter word to guess: ");
-  fflush(stdout);
-  scanf(" %s", answer);
 
-  // Set the mask array - mask[i] is true if the
-  // character s[i] has been guessed.  The mask
-  // must be allocated, and initialized to all false
-  int N = strlen(answer);
-  int mask[N];
-  for (int i=0; i < N; ++i) {
-    mask[i] = 0;
-  }
+srand(time(NULL));
+	
+char guessWords[][16] = {
+		"bananas", 
+		"fruits",
+		"juice",
+		"apple",
+	};
+	
+	// index for random word
+	int randomIndex = rand() % 4;
+	
+	int numLives = 5;
+	int numCorrect = 0;
+	int oldCorrect = 0;
+	
+	int lengthOfWord = strlen(guessWords[randomIndex]);
 
-  // Loop over each round of guessing
-  int gameover = 0;
-  while (! gameover) {
-    // Print word with *s for unguessed letters
-    printf("The word is : ");
-    for(int j=0; j < N; ++j) {
-      if (mask[j]) {
-        printf("%c", answer[j]);
-      }
-      else {
-        printf("*");
-      }
-    }
-    printf("\n");
-
-    // Get player's next guess
-    char guess;
-    printf("Letter? ");
-    fflush(stdout);
-    scanf(" %c", &guess);
-
-    // Mark true all mask positions corresponding to guess
-    for(int k=0; k < N; ++k) {
-      if (answer[k] == guess) {
-	mask[k] = 1;
-      }
-    }
-
-    // Determine whether the player has won!
-    gameover = 1;
-    for(int m = 0; m < N; ++m) {
-      if (!mask[m]) {
-        gameover = 0;
-        break;
-      }
-    }
-  }
-
-  // Print victory message!
-  printf("Victory! The word is \"%s\".\n", answer);
-
-  return 0;
+	int letterGuessed[8] = { 0,0,0,0,0,0,0,0 };
+	
+	int loopIndex = 0;
+	int reguessed = 0; 
+	
+	char guess[16];
+	char letterEntered;	
+	
+    // game loop	
+	while ( numCorrect < lengthOfWord ) {
+	
+		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
+		
+			if(letterGuessed[loopIndex] == 1) {
+				printf("%c",guessWords[randomIndex][loopIndex]);				
+			} else {
+				printf("*");
+			}
+		
+		}	
+		
+		printf("\n");
+		printf("Enter a guess letter:");
+		fgets(guess, 16, stdin);
+		}
+		
+		letterEntered = guess[0];
+		reguessed = 0; 
+		
+		printf("letterEntered:%c\n",letterEntered);
+		
+		oldCorrect = numCorrect;
+		
+		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
+		
+			if(letterGuessed[loopIndex] == 1) {
+				if(guessWords[randomIndex][loopIndex] == letterEntered) {
+					reguessed = 1; 
+					break;
+				} 
+				continue;
+			}
+		
+			if( letterEntered == guessWords[randomIndex][loopIndex] ) {
+				letterGuessed[loopIndex] = 1;
+				numCorrect++;				
+			}		
+		
+		}	
+		
+		if( oldCorrect == numCorrect && reguessed == 0) {
+			numLives--;
+			printf("Sorry, wrong guess\n");
+			if (numLives == 0) {
+				break;
+			}
+		} else if( reguessed == 1) {
+			printf("Already Guessed!!\n");
+		} else {
+			printf("Correct guess :)\n");
+		}
+		
+		printf("\nYOU WIN!!! :)\n");
+	} 
+	
+		
+	return 0;
 }
