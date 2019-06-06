@@ -17,20 +17,13 @@ int main() {
 	};
 
 	int randomIndex = rand() % 6;
-	
 	int numLives = 10;
 	int numCorrect = 0;
 	int oldCorrect = 0;
-	
 	int lengthOfWord = strlen(guessWords[randomIndex]);
-	
-	int letterGuessed[8] = { 0,0,0,0,0,0,0,0 };
-	
-	int quit = 0;	
-	
+	int letterGuessed[8] = { 0,0,0,0,0,0,0,0 };	
 	int loopIndex = 0;
 	int reguessed = 0;
-	
 	char guess[20];
 	char letterEntered;	
 	
@@ -53,13 +46,9 @@ int main() {
 		
 		printf("\n");
 	
-		printf("Number Correct So Far:%d\n",numCorrect);
-		printf("Enter a guess letter:");
+		printf("Guess a letter:");
 		fgets(guess, 20, stdin);
-		
-		if( strncmp(guess, "quit", 4) == 0) {
-			quit = 1;
-			break;
+
 		}
 		
 		letterEntered = guess[0];
@@ -99,13 +88,14 @@ int main() {
 		}
 	
 	} // while loop
-	
-	if( quit == 1 ) {	
-		printf("\nthe user quit early\n");
-	} else if (numLives == 0) {
+	 
+	if (numLives == 0) 
+		{
 		printf("\nSorry you lose, the word was: %s\n",
 		guessWords[randomIndex]);	
-	} else  {	
+	} 
+	else  
+	{	
 		printf("\nYOU WIN!!! :)\n");
 	} 
 	
