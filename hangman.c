@@ -12,9 +12,13 @@ int main()
     int win=0;			//wincounter keeps track of the number of correct guesses.
     int i;				//Another counter variable to be used in for loops.
 
-  printf("Enter word to guess: ");
-  len = strlen(word);	
-  scanf(" %s", answer);
+  char guessWords[][20] = {
+		"pen", 
+		"fruit",
+		"summer",
+		"water",
+		"bear",
+		"apple"	
 
 for(counter = 0; counter<26; counter++)
     {
