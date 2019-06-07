@@ -49,10 +49,7 @@ char letterEntered;
 	
 		printf("Enter a guess letter:");
 		fgets(guess, 20, stdin);
-		
-		if( strncmp(guess, "quit", 4) == 0) {
-			quit = 1;
-			break;
+
 		}
 		
 		letterEntered = guess[0];
@@ -70,7 +67,6 @@ char letterEntered;
 				if(guessWords[randomIndex][loopIndex] == letterEntered) 
 		{
 					reguessed = 1; 
-					break;
 		} 
 				continue;
 		}
