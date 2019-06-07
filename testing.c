@@ -3,8 +3,8 @@
 #include "string.h"
 #include "time.h"
 
-int main() {
-
+int main(void) 
+{
 	srand(time(NULL));
 	
 	char guessWords[][20] = {
@@ -89,17 +89,21 @@ char letterEntered;
 			printf("Correct guess :)\n");
 		}
 	
-	} // while loop
+	 // while loop
 	
-	if( quit == 1 ) {	
+	if (quit == 1) 
+  {	
 		printf("\nthe user quit early\n");
-	} else if (numLives == 0) {
+	} 
+  else if (numLives == 0) 
+  {
 		printf("\nSorry you lose, the word was: %s\n",
 		guessWords[randomIndex]);	
-	} else  {	
+	} 
+  else  
+  {	
 		printf("\nYOU WIN!!! :)\n");
 	} 
-	
 		
 	return 0;
 }
