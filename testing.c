@@ -82,7 +82,6 @@ char letterEntered;
 			numLives--;
 			printf("Sorry, wrong guess\n");
 			if (numLives == 0) {
-				break;
 			}
 		} else if( reguessed == 1) {
 			printf("Already Guessed!!\n");
