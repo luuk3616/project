@@ -1,55 +1,95 @@
-#include <stdio.h>
-#include <string.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+#include "time.h"
 
-int main() 
-    char word[20];			//Used to store the user word. Most words are less than 20 characters so the default size is 20.
-    char stars[20];			//A string full of * that are replaced upon the user entering the right letter of the word.
-    int counter = 0;			//A counter to use in the for loops.
-    int len;				//len is the length of the word entered.
-    char ch;				//ch is a temporary character variable.
-    int guessses=0;			//strikes counts how many wrong characters the user has guessed.
-    int flag = 0;			//The trigger variable serves as a flag in the for loops bellow.
-    int win=0;			//wincounter keeps track of the number of correct guesses.
-    int i;				//Another counter variable to be used in for loops.
+int main() {
 
-  char word[][20] = {
-		"pen", 
-		"fruit",
+	srand(time(NULL));
+	
+	char guessWords[][20] = {
+		"bear", 
 		"summer",
 		"water",
-		"bear",
+		"raven",
+		"fruit",
 		"apple"	
+	};
+	
+	// index for random word
+	int randomIndex = rand() % 6;
+	
+	int numLives = 5;
+	int numCorrect = 0;
+	int oldCorrect = 0;
+	
+	int lengthOfWord = strlen(guessWords[randomIndex]);
+	
+	int letterGuessed[8] = { 0,0,0,0,0,0,0,0 };
+	
+	int loopIndex = 0;
+	int reguessed = 0; // EDIT
+	
+	char guess[20];
+	char letterEntered;	
+	
+    // game loop	
+	while ( numCorrect < lengthOfWord ) {
 
-for(counter = 0; counter<26; counter++)
-    {
-        if(win==len)			   
-            printf("Good job! The word is \"%s\".\n", answer);
-            break;
-        }
-if(strikes==10)
-        {
-             printf("Game Over! The word is \"%s\".\n", answer);
-            break;
-	}
-printf("\n\n\n\n%s", stars);
-printf("\n\nGuess a letter:");
-        scanf(" %c",&ch);
- for(i=0; i<len; i++)            		
-        {
-            if(word[i]==ch)
-            {
-                stars[i]=ch;		    		
-                flag++;			   	
-                wincounter++;		    		
-            }
-        }
+		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
+		
+			if(letterGuessed[loopIndex] == 1) {
+				printf("%c",guessWords[randomIndex][loopIndex]);				
+			} else {
+				printf("*");
+			}
+		
+		}	
+		
+		printf("\n");
+		printf("Enter a guess letter:");
+		fgets(guess, 20, stdin);
 
-        if(flag==0)
-        {
-            strikes++;				    	
+		
+		letterEntered = guess[0];
+		reguessed = 0; 
+		oldCorrect = numCorrect;
+		
+		for( loopIndex = 0; loopIndex < lengthOfWord; loopIndex++) {
+		
+			if(letterGuessed[loopIndex] == 1) {
+				if(guessWords[randomIndex][loopIndex] == letterEntered) {
+					reguessed = 1; 
 
-        flag = 0;				    
-    }
-
-  return 0;
+				} 
+				continue;
+			}
+		
+			if( letterEntered == guessWords[randomIndex][loopIndex] ) {
+				letterGuessed[loopIndex] = 1;
+				numCorrect++;				
+			}		
+		
+		}	
+		
+		if( oldCorrect == numCorrect) {
+			numLives--;
+			printf("Sorry, wrong guess\n");
+			if (numLives == 0) {
+				break;
+			}
+		} else {
+			printf("Correct guess :)\n");
+		}
+	
+	} // while loop
+	
+if (numLives == 0) {
+		printf("\nSorry you lose, the word was: %s\n",
+		guessWords[randomIndex]);	
+	} else  {	
+		printf("\nYou win!\n");
+	} 
+	
+	return 0;
 }
